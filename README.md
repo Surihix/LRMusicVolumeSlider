@@ -1,5 +1,5 @@
 # LRMusicVolumeSlider (app code only)
- This is an small C# Winforms based GUI app that allows you to control the volume levels of the music in LIGHTNING RETURNS FINAL FANTASY XIII steam version. 
+ This is an small C# Winforms based GUI app, that allows you to control the volume levels of the music in LIGHTNING RETURNS FINAL FANTASY XIII steam version of the game. 
  <br>
  <br>
 This repo only has the project code for the App, the batch scripts and only one of the patching tools. the ff13tool, ffxiiicrypt tool and the WPDPack tool that are all required for patching the volume of the game is not included as I am not the author of those tools.
