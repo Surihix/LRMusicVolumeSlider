@@ -100,12 +100,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Scripts\NovaVolume.bat" />
+    <None Include="Scripts\PackedEnVolume.bat" />
+    <None Include="Scripts\PackedJPVolume.bat" />
+    <None Include="Scripts\VolumePatcher.bat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app_icon.ico" />
+    <Content Include="PatchTools\LRVolumePatchTool.exe" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\about_icon.png" />
@@ -113,5 +118,6 @@
   <ItemGroup>
     <None Include="Properties\app_img.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
