@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRMusicVolumeSlider", "LRMusicVolumeSlider.csproj", "{B8168466-D7C8-4C87-B2F9-DB253B3FBBB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8168466-D7C8-4C87-B2F9-DB253B3FBBB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8168466-D7C8-4C87-B2F9-DB253B3FBBB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8168466-D7C8-4C87-B2F9-DB253B3FBBB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8168466-D7C8-4C87-B2F9-DB253B3FBBB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E59C210F-5002-4832-B17D-21FA706CBF89}
+	EndGlobalSection
+EndGlobal
