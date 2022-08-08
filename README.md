@@ -1,1 +1,1 @@
-# LRMusicVolumeSlider
+# LRMusicVolumeSlider (app code only)
