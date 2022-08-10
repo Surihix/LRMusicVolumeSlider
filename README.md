@@ -3,6 +3,7 @@
  <br>
  <br>
 This repo only has the project code for the App, the batch scripts and only one of the patching tools. 
+
 <br>The <b>ff13tool</b>, <b>ffxiiicrypt</b> tool and the <b>WPDPack</b> tool, that are all required for patching the volume of the game is not included as I am not the author of those tools.
 <br>
 <br>
