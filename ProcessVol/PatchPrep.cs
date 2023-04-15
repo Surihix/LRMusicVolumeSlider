@@ -47,7 +47,7 @@ namespace LRMusicVolumeSlider
             
             if (musicDir.Length.Equals(0))
             {
-                CmnMethods.AppMsgBox("Unpacked music folder is empty\nPlease unpack the game data correctly with the Nova mod manager and then try setting the volume.", "Error", MessageBoxIcon.Error);
+                CmnMethods.AppMsgBox("Unpacked music folder is empty.\nPlease unpack the game data correctly with the Nova mod manager and then try setting the volume.", "Error", MessageBoxIcon.Error);
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace LRMusicVolumeSlider
 
         public static void PatchSucess(int sliderValueVar)
         {
-            CmnMethods.AppMsgBox("Music volume is set to level " + sliderValueVar, "Success", MessageBoxIcon.Information);
+            CmnMethods.AppMsgBox("Music volume is set to level " + sliderValueVar + ".", "Success", MessageBoxIcon.Information);
         }
     }
 }

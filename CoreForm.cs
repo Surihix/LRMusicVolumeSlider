@@ -14,12 +14,12 @@ namespace LRMusicVolumeSlider
 
             if (!File.Exists("AppHelp.txt"))
             {
-                CmnMethods.AppMsgBox("The 'AppHelp.txt' file is missing\nPlease ensure that this file is present next to the app to use the Help option.", "Warning", MessageBoxIcon.Warning);
+                CmnMethods.AppMsgBox("The 'AppHelp.txt' file is missing.\nPlease ensure that this file is present next to the app to use the Help option.", "Warning", MessageBoxIcon.Warning);
             }
 
             if (!File.Exists("ffxiiicrypt.exe"))
             {
-                CmnMethods.AppMsgBox("The 'ffxiiicrypt.exe' tool is missing\nPlease ensure that this tool is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
+                CmnMethods.AppMsgBox("The 'ffxiiicrypt.exe' tool is missing.\nPlease ensure that this tool is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
 
@@ -31,7 +31,7 @@ namespace LRMusicVolumeSlider
                 SlidertrackBar.Value = 5;
                 SlidertrackBar.Select();
 
-                CmnMethods.AppMsgBox("Please set the path of the LIGHTNING RETURNS FINAL FANTASY XIII executable file", "Information", MessageBoxIcon.Information);
+                CmnMethods.AppMsgBox("Please set the path of the LIGHTNING RETURNS FINAL FANTASY XIII executable file.", "Information", MessageBoxIcon.Information);
             }
             else
             {
@@ -41,7 +41,7 @@ namespace LRMusicVolumeSlider
                     PathtextBox.Text = loadFromXml.ExePath;
                     if (!File.Exists(PathtextBox.Text + "LRFF13.exe"))
                     {
-                        CmnMethods.AppMsgBox("Main executable file is not present in the file path that was set before\nPlease set the correct path and then Set the volume", "Warning", MessageBoxIcon.Warning);
+                        CmnMethods.AppMsgBox("Main executable file is not present in the location that was set before.\nPlease set the correct path of this file before setting the volume.", "Warning", MessageBoxIcon.Warning);
                         PathtextBox.Text = "";
                     }
 
@@ -57,7 +57,7 @@ namespace LRMusicVolumeSlider
                             JpnUIVOradiobutton.Checked = true;
                             break;
                         default:
-                            CmnMethods.AppMsgBox("Voiceover setting set in xml file was invalid", "Warning", MessageBoxIcon.Warning);
+                            CmnMethods.AppMsgBox("Voiceover setting saved in xml file is invalid.", "Warning", MessageBoxIcon.Warning);
                             EnVOradiobutton.Checked = true;
                             break;
                     }
@@ -71,7 +71,7 @@ namespace LRMusicVolumeSlider
                             Novaradiobutton.Checked = true;
                             break;
                         default:
-                            CmnMethods.AppMsgBox("FileSystem setting set in xml file was invalid", "Warning", MessageBoxIcon.Warning);
+                            CmnMethods.AppMsgBox("FileSystem setting saved in xml file is invalid.", "Warning", MessageBoxIcon.Warning);
                             Packedradiobutton.Checked = true;
                             break;
                     }
@@ -112,7 +112,7 @@ namespace LRMusicVolumeSlider
                             SlidertrackBar.Value = 10;
                             break;
                         default:
-                            CmnMethods.AppMsgBox("Slider value set in xml file was invalid", "Warning", MessageBoxIcon.Warning);
+                            CmnMethods.AppMsgBox("Slider value saved in xml file is invalid.", "Warning", MessageBoxIcon.Warning);
                             SlidertrackBar.Value = 5;
                             break;
                     }
@@ -121,7 +121,7 @@ namespace LRMusicVolumeSlider
                 }
                 catch (Exception)
                 {
-                    CmnMethods.AppMsgBox("Data entered in UserSettings file is corrupt\nPlease re configure the settings again", "Warning", MessageBoxIcon.Warning);
+                    CmnMethods.AppMsgBox("Data entered in UserSettings file is corrupt.\nPlease re configure the settings again", "Warning", MessageBoxIcon.Warning);
                     CmnMethods.IfFileExistsDel("UserSettings.xml");
                     DisableComponents();
                     EnVOradiobutton.Checked = true;
@@ -227,7 +227,7 @@ namespace LRMusicVolumeSlider
                         {
                             if (!JpnUIVOradiobutton.Checked.Equals(true))
                             {
-                                CmnMethods.AppMsgBox("Required game files are missing\nPlease check if the voice over option that you have set in this app is available for your game.", "Error", MessageBoxIcon.Error);
+                                CmnMethods.AppMsgBox("Required game files are missing.\nPlease check if the voice over option that you have set in this app is available for your game.", "Error", MessageBoxIcon.Error);
                             }
                             else
                             {
@@ -272,7 +272,7 @@ namespace LRMusicVolumeSlider
                 }
                 else
                 {
-                    CmnMethods.AppMsgBox("Unable to locate the unpacked music folder\nPlease unpack the game data correctly with the Nova mod manager and then try setting the volume.", "Error", MessageBoxIcon.Error);
+                    CmnMethods.AppMsgBox("Unable to locate the unpacked music folder.\nPlease unpack the game data correctly with the Nova mod manager and then try setting the volume.", "Error", MessageBoxIcon.Error);
                 }
 
                 EnableComponents();
@@ -287,7 +287,7 @@ namespace LRMusicVolumeSlider
         {
             if (!File.Exists(PathtextBox.Text + "LRFF13.exe"))
             {
-                CmnMethods.AppMsgBox("Unable to locate main executable file.\nPlease set the correct game path", "Error", MessageBoxIcon.Error);
+                CmnMethods.AppMsgBox("Unable to locate main executable file.\nPlease set the correct game path.", "Error", MessageBoxIcon.Error);
             }
             else
             {
@@ -386,7 +386,7 @@ namespace LRMusicVolumeSlider
             }
             else
             {
-                CmnMethods.AppMsgBox("Unable to locate the help text file\nPlease ensure that this text file is present next to the app before using this option.", "Error", MessageBoxIcon.Error);
+                CmnMethods.AppMsgBox("Unable to locate the help text file.\nPlease ensure that this text file is present next to the app before using this option.", "Error", MessageBoxIcon.Error);
             }
         }
     }

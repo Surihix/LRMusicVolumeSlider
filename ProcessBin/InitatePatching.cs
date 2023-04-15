@@ -31,7 +31,7 @@ namespace LRMusicVolumeSlider
                     break;
 
                 case false:
-                    CmnMethods.AppMsgBox("Zone filelist path is modified\nPlease verify your game files with steam or unpack the game data with the Nova Mod Manager and use the Nova/Unpacked mode option from this app", "Error", MessageBoxIcon.Error);
+                    CmnMethods.AppMsgBox("Zone filelist path is modified.\nPlease verify your game files with steam or unpack the game data with the Nova Mod Manager and use the Nova/Unpacked mode option from this app.", "Error", MessageBoxIcon.Error);
                     break;
             }
         }
