@@ -275,19 +275,6 @@ namespace LRMusicVolumeSlider
                         var whiteBin2File = weissPath + "weiss_data\\sys\\white_img2" + langCode + ".win32.bin";
                         var whiteBinZoneFile = weissPath + "weiss_data\\zone\\white_z0120" + langCode + "_img.win32.bin";
 
-                        if (!File.Exists(PathtextBox.Text + "LRFF13.exe"))
-                        {
-                            if (JpnUIVOradiobutton.Checked.Equals(true))
-                            {
-                                CmnMethods.AppMsgBox("選択したフォルダーに「LRFF13.exe」ファイルが見つかりません。\n\n選択したフォルダが有効な「LIGHTNING RETURNS FINAL FANTASY XIII」かどうかを確認してください。", "Error", MessageBoxIcon.Error);
-                            }
-                            else
-                            {
-                                CmnMethods.AppMsgBox("Unable to locate 'LRFF13.exe' file in the selected folder.\nPlease check if the selected folder is a valid LIGHTNING RETURNS FINAL FANTASY XIII folder.", "Error", MessageBoxIcon.Error);
-                            }
-                            return;
-                        }
-
                         if (File.Exists(filelist2file) && File.Exists(whiteBin2File) && File.Exists(whiteBinZoneFile))
                         {
                             try
@@ -323,7 +310,7 @@ namespace LRMusicVolumeSlider
                     finally
                     {
                         CmnMethods.IfFileExistsDel(weissPath + "weiss_data\\sys\\filelist2" + langCode + ".win32.bin.txt");
-                        CmnMethods.IfDirExistsDel(weissPath + "weiss_data\\sys\\white_img2" + langCode + "_win32");
+                        CmnMethods.IfDirExistsDel(weissPath + "weiss_data\\sys\\_white_img2" + langCode + ".win32.bin");
                         CmnMethods.IfDirExistsDel(weissPath + "zone");
 
                         BeginInvoke(new Action(() => { EnableComponents(); }));
