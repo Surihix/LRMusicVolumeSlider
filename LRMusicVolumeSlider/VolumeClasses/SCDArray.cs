@@ -1,8 +1,8 @@
-﻿namespace LRMusicVolumeSlider
+﻿namespace LRMusicVolumeSlider.VolumeClasses
 {
-    internal class SCDlist
+    internal class SCDArray
     {
-        public static readonly string[] LRmusicList = new string[]
+        public static readonly string[] LRmusicArray = new string[]
         {
             "0.8:music_101ldun_f.win32.scd",
             "0.85:music_105titarr.win32.scd",

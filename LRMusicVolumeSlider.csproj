@@ -40,7 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetZip, Version=1.16.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
-      <HintPath>packages\DotNetZip.1.16.0\lib\net40\DotNetZip.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WhiteBinTools_dll\bin\Release\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,23 +63,31 @@
     <Compile Include="LRMusicVolumeSlider\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LRMusicVolumeSlider\ProcessCmn\CmnMethods.cs" />
+    <Compile Include="LRMusicVolumeSlider\CmnMethods.cs" />
     <Compile Include="LRMusicVolumeSlider\CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LRMusicVolumeSlider\CoreForm.Designer.cs">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LRMusicVolumeSlider\ProcessBin\InitatePatching.cs" />
-    <Compile Include="LRMusicVolumeSlider\ProcessVol\PatchPrep.cs" />
+    <Compile Include="LRMusicVolumeSlider\InitatePatching.cs" />
+    <Compile Include="LRMusicVolumeSlider\PatchPrep.cs" />
     <Compile Include="LRMusicVolumeSlider\Program.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\FilelistClasses\FilelistProcesses1.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\FilelistClasses\FilelistProcesses2.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\FilelistClasses\FilelistProcesses3.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\SupportClasses\BinaryHelpers.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\SupportClasses\CmnEnums.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\SupportClasses\IOhelpers.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\SupportClasses\ZlibFunctions.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\UnpackClasses\UnpackProcesses1.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\UnpackClasses\UnpackProcesses2.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\UnpackClasses\UnpackTypeB.cs" />
+    <Compile Include="LRMusicVolumeSlider\WhiteBinClasses\UnpackClasses\UnpackTypeC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LRMusicVolumeSlider\ProcessBin\UnpackBin.cs" />
-    <Compile Include="LRMusicVolumeSlider\ProcessBin\StreamExtension.cs" />
-    <Compile Include="LRMusicVolumeSlider\ProcessVol\SCDlist.cs" />
-    <Compile Include="LRMusicVolumeSlider\ProcessCmn\UserSettings.cs" />
-    <Compile Include="LRMusicVolumeSlider\ProcessBin\ZlibLibrary.cs" />
-    <Compile Include="LRMusicVolumeSlider\ProcessVol\AdjustVolume.cs" />
+    <Compile Include="LRMusicVolumeSlider\VolumeClasses\SCDArray.cs" />
+    <Compile Include="LRMusicVolumeSlider\UserSettings.cs" />
+    <Compile Include="LRMusicVolumeSlider\VolumeClasses\AdjustVolume.cs" />
     <EmbeddedResource Include="LRMusicVolumeSlider\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,7 +103,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

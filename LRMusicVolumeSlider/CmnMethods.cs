@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -28,23 +27,10 @@ namespace LRMusicVolumeSlider
             }
         }
 
-        public static void FFXiiiCryptTool(string cryptDir, string action, string fileListName, ref string actionType)
-        {
-            using (Process xiiiCrypt = new Process())
-            {
-                xiiiCrypt.StartInfo.WorkingDirectory = cryptDir;
-                xiiiCrypt.StartInfo.FileName = "ffxiiicrypt.exe";
-                xiiiCrypt.StartInfo.Arguments = action + fileListName + actionType;
-                xiiiCrypt.StartInfo.UseShellExecute = true;
-                xiiiCrypt.Start();
-                xiiiCrypt.WaitForExit();
-            }
-        }
-
         public static void FileCountReader(string filelistPathsFileVar, ref uint totalFileCountVar)
         {
             totalFileCountVar = (uint)File.ReadAllLines(filelistPathsFileVar).Count();
-            totalFileCountVar --;
+            totalFileCountVar--;
         }
     }
 }

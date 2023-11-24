@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,12 +17,6 @@ namespace LRMusicVolumeSlider
             if (!File.Exists("AppHelp.txt"))
             {
                 CmnMethods.AppMsgBox("The 'AppHelp.txt' file is missing.\nPlease ensure that this file is present next to the app to use the Help option.", "Warning", MessageBoxIcon.Warning);
-            }
-
-            if (!File.Exists("ffxiiicrypt.exe"))
-            {
-                CmnMethods.AppMsgBox("The 'ffxiiicrypt.exe' tool is missing.\nPlease ensure that this tool is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
-                Environment.Exit(0);
             }
 
             if (!File.Exists("UserSettings.xml"))
@@ -123,6 +119,7 @@ namespace LRMusicVolumeSlider
                 {
                     CmnMethods.AppMsgBox("Data entered in UserSettings file is corrupt.\nPlease re configure the settings again", "Warning", MessageBoxIcon.Warning);
                     CmnMethods.IfFileExistsDel("UserSettings.xml");
+
                     DisableComponents();
                     EnVOradiobutton.Checked = true;
                     Packedradiobutton.Checked = true;
@@ -131,6 +128,7 @@ namespace LRMusicVolumeSlider
                 }
             }
         }
+
 
         private void Browsebutton_Click(object sender, System.EventArgs e)
         {
@@ -179,6 +177,67 @@ namespace LRMusicVolumeSlider
         }
 
 
+        public bool FilesCheck()
+        {
+            var appFilesDict = new Dictionary<int, (string name, string hash, string type)>
+            {
+                { 0, ("DotNetZip.dll", "8e9c0362e9bfb3c49af59e1b4d376d3e85b13aed0fbc3f5c0e1ebc99c07345f3", "dll" ) },
+                { 1, ("ffxiiicrypt.exe", "f9dbc8ac8b367196e449fbb78df396d15aa5f7d8d07e1e295c4435b6c1192ce3", "exe") }
+            };
+
+            var allValid = true;
+            for (int c = 0; c < 2; c++)
+            {
+                if (File.Exists(appFilesDict[c].name))
+                {
+                    byte[] hashArray;
+                    string hash;
+                    using (var checkStream = new FileStream(appFilesDict[c].name, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var fileHash256 = SHA256.Create())
+                        {
+                            hashArray = fileHash256.ComputeHash(checkStream);
+                            hash = BitConverter.ToString(hashArray).Replace("-", "").ToLower();
+                        }
+
+                        if (!hash.Equals(appFilesDict[c].hash))
+                        {
+                            allValid = false;
+
+                            if (JpnUIVOradiobutton.Checked.Equals(true))
+                            {
+                                // translate
+                                CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' file is corrupt.\nPlease check if this Volume Slider program is properly downloaded.", "Error", MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' file is corrupt.\nPlease check if this Volume Slider program is properly downloaded.", "Error", MessageBoxIcon.Error);
+                            }
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    allValid = false;
+
+                    if (JpnUIVOradiobutton.Checked.Equals(true))
+                    {
+                        // translate
+                        CmnMethods.AppMsgBox($"The '{appFilesDict[c].name}' file is missing.\nPlease ensure that this {appFilesDict[c].type} file is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        CmnMethods.AppMsgBox($"The '{appFilesDict[c].name}' file is missing.\nPlease ensure that this {appFilesDict[c].type} file is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
+                    }
+                    break;
+                }
+            }
+
+            return allValid;
+        }
+
+
         private void SetVolumebutton_Click(object sender, EventArgs e)
         {
             DisableComponents();
@@ -216,7 +275,16 @@ namespace LRMusicVolumeSlider
                         {
                             try
                             {
-                                InitatePatching.PrePatch(weissPath, langCode, SliderVal);
+                                var allfilesValid = FilesCheck();
+
+                                if (allfilesValid)
+                                {
+                                    InitatePatching.PrePatch(weissPath, langCode, SliderVal);
+                                }
+                                else
+                                {
+                                    return;
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -237,13 +305,7 @@ namespace LRMusicVolumeSlider
                     }
                     finally
                     {
-                        if (!File.Exists(weissPath + "weiss_data\\sys\\LRMusicVolumeSlider.exe") 
-                        && File.Exists(weissPath + "weiss_data\\sys\\ffxiiicrypt.exe"))
-                        {
-                            CmnMethods.IfFileExistsDel(weissPath + "weiss_data\\sys\\ffxiiicrypt.exe");
-                        }
-
-                        CmnMethods.IfFileExistsDel(weissPath + "weiss_data\\sys\\filelist2" + langCode + ".win32.txt");
+                        CmnMethods.IfFileExistsDel(weissPath + "weiss_data\\sys\\filelist2" + langCode + ".win32.bin.txt");
                         CmnMethods.IfDirExistsDel(weissPath + "weiss_data\\sys\\white_img2" + langCode + "_win32");
                         CmnMethods.IfDirExistsDel(weissPath + "zone");
 
@@ -287,7 +349,15 @@ namespace LRMusicVolumeSlider
         {
             if (!File.Exists(PathtextBox.Text + "LRFF13.exe"))
             {
-                CmnMethods.AppMsgBox("Unable to locate main executable file.\nPlease set the correct game path.", "Error", MessageBoxIcon.Error);
+                if (JpnUIVOradiobutton.Checked.Equals(true))
+                {
+                    // translate
+                    CmnMethods.AppMsgBox("Unable to locate main executable file.\nPlease set the correct game path.", "Error", MessageBoxIcon.Error);
+                }
+                else
+                {
+                    CmnMethods.AppMsgBox("Unable to locate main executable file.\nPlease set the correct game path.", "Error", MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -363,12 +433,14 @@ namespace LRMusicVolumeSlider
             }
         }
 
+
         private void AboutlinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             AboutForm appAbout = new AboutForm();
             System.Media.SystemSounds.Asterisk.Play();
             appAbout.ShowDialog();
         }
+
 
         private void HelplinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
