@@ -28,6 +28,7 @@ namespace LRMusicVolumeSlider
                 SlidertrackBar.Select();
 
                 CmnMethods.AppMsgBox("Please set the path of the LIGHTNING RETURNS FINAL FANTASY XIII executable file.", "Information", MessageBoxIcon.Information);
+                Browsebutton.Enabled = true;
             }
             else
             {
@@ -130,7 +131,7 @@ namespace LRMusicVolumeSlider
         }
 
 
-        private void Browsebutton_Click(object sender, System.EventArgs e)
+        private void Browsebutton_Click(object sender, EventArgs e)
         {
             var lrExe = "LRFF13.exe";
             OpenFileDialog pathSelect = new OpenFileDialog
@@ -155,6 +156,10 @@ namespace LRMusicVolumeSlider
 
         public void EnableComponents()
         {
+            if (Browsebutton.Enabled.Equals(false))
+            {
+                Browsebutton.Enabled = true;
+            }
             EnVOradiobutton.Enabled = true;
             JpVOradiobutton.Enabled = true;
             JpnUIVOradiobutton.Enabled = true;
@@ -167,6 +172,7 @@ namespace LRMusicVolumeSlider
 
         public void DisableComponents()
         {
+            Browsebutton.Enabled = false;
             EnVOradiobutton.Enabled = false;
             JpVOradiobutton.Enabled = false;
             JpnUIVOradiobutton.Enabled = false;
@@ -206,8 +212,7 @@ namespace LRMusicVolumeSlider
 
                             if (JpnUIVOradiobutton.Checked.Equals(true))
                             {
-                                // translate
-                                CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' file is corrupt.\nPlease check if this Volume Slider program is properly downloaded.", "Error", MessageBoxIcon.Error);
+                                CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' ファイルが破損しています。\n\nこのボリューム スライダー プログラムが正しくダウンロードされているかどうかを確認してください。", "Error", MessageBoxIcon.Error);
                             }
                             else
                             {
@@ -223,8 +228,7 @@ namespace LRMusicVolumeSlider
 
                     if (JpnUIVOradiobutton.Checked.Equals(true))
                     {
-                        // translate
-                        CmnMethods.AppMsgBox($"The '{appFilesDict[c].name}' file is missing.\nPlease ensure that this {appFilesDict[c].type} file is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
+                        CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' が見つかりません。\n\nこのファイルがこのプログラムの隣に存在することを確認してください。", "Error", MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -270,6 +274,19 @@ namespace LRMusicVolumeSlider
                         var filelist2file = weissPath + "weiss_data\\sys\\filelist2" + langCode + ".win32.bin";
                         var whiteBin2File = weissPath + "weiss_data\\sys\\white_img2" + langCode + ".win32.bin";
                         var whiteBinZoneFile = weissPath + "weiss_data\\zone\\white_z0120" + langCode + "_img.win32.bin";
+
+                        if (!File.Exists(PathtextBox.Text + "LRFF13.exe"))
+                        {
+                            if (JpnUIVOradiobutton.Checked.Equals(true))
+                            {
+                                CmnMethods.AppMsgBox("選択したフォルダーに「LRFF13.exe」ファイルが見つかりません。\n\n選択したフォルダが有効な「LIGHTNING RETURNS FINAL FANTASY XIII」かどうかを確認してください。", "Error", MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                CmnMethods.AppMsgBox("Unable to locate 'LRFF13.exe' file in the selected folder.\nPlease check if the selected folder is a valid LIGHTNING RETURNS FINAL FANTASY XIII folder.", "Error", MessageBoxIcon.Error);
+                            }
+                            return;
+                        }
 
                         if (File.Exists(filelist2file) && File.Exists(whiteBin2File) && File.Exists(whiteBinZoneFile))
                         {
@@ -347,90 +364,75 @@ namespace LRMusicVolumeSlider
 
         public void SaveValuesToXml()
         {
-            if (!File.Exists(PathtextBox.Text + "LRFF13.exe"))
+            UserSettings saveXml = new UserSettings
             {
-                if (JpnUIVOradiobutton.Checked.Equals(true))
-                {
-                    // translate
-                    CmnMethods.AppMsgBox("Unable to locate main executable file.\nPlease set the correct game path.", "Error", MessageBoxIcon.Error);
-                }
-                else
-                {
-                    CmnMethods.AppMsgBox("Unable to locate main executable file.\nPlease set the correct game path.", "Error", MessageBoxIcon.Error);
-                }
-            }
-            else
+                ExePath = PathtextBox.Text
+            };
+
+            if (EnVOradiobutton.Checked.Equals(true))
             {
-                UserSettings saveXml = new UserSettings
-                {
-                    ExePath = PathtextBox.Text
-                };
-
-                if (EnVOradiobutton.Checked.Equals(true))
-                {
-                    saveXml.VoiceOver = "en";
-                }
-
-                if (JpVOradiobutton.Checked.Equals(true))
-                {
-                    saveXml.VoiceOver = "jp";
-                }
-
-                if (JpnUIVOradiobutton.Checked.Equals(true))
-                {
-                    saveXml.VoiceOver = "jpn";
-                }
-
-                if (Packedradiobutton.Checked.Equals(true))
-                {
-                    saveXml.FileSystem = "packed";
-                }
-
-                if (Novaradiobutton.Checked.Equals(true))
-                {
-                    saveXml.FileSystem = "nova";
-                }
-
-                int SliderVal = SlidertrackBar.Value;
-                switch (SliderVal)
-                {
-                    case 0:
-                        saveXml.SliderValue = 0;
-                        break;
-                    case 1:
-                        saveXml.SliderValue = 1;
-                        break;
-                    case 2:
-                        saveXml.SliderValue = 2;
-                        break;
-                    case 3:
-                        saveXml.SliderValue = 3;
-                        break;
-                    case 4:
-                        saveXml.SliderValue = 4;
-                        break;
-                    case 5:
-                        saveXml.SliderValue = 5;
-                        break;
-                    case 6:
-                        saveXml.SliderValue = 6;
-                        break;
-                    case 7:
-                        saveXml.SliderValue = 7;
-                        break;
-                    case 8:
-                        saveXml.SliderValue = 8;
-                        break;
-                    case 9:
-                        saveXml.SliderValue = 9;
-                        break;
-                    case 10:
-                        saveXml.SliderValue = 10;
-                        break;
-                }
-
-                saveXml.SaveSettings();
+                saveXml.VoiceOver = "en";
             }
+
+            if (JpVOradiobutton.Checked.Equals(true))
+            {
+                saveXml.VoiceOver = "jp";
+            }
+
+            if (JpnUIVOradiobutton.Checked.Equals(true))
+            {
+                saveXml.VoiceOver = "jpn";
+            }
+
+            if (Packedradiobutton.Checked.Equals(true))
+            {
+                saveXml.FileSystem = "packed";
+            }
+
+            if (Novaradiobutton.Checked.Equals(true))
+            {
+                saveXml.FileSystem = "nova";
+            }
+
+            int SliderVal = SlidertrackBar.Value;
+            switch (SliderVal)
+            {
+                case 0:
+                    saveXml.SliderValue = 0;
+                    break;
+                case 1:
+                    saveXml.SliderValue = 1;
+                    break;
+                case 2:
+                    saveXml.SliderValue = 2;
+                    break;
+                case 3:
+                    saveXml.SliderValue = 3;
+                    break;
+                case 4:
+                    saveXml.SliderValue = 4;
+                    break;
+                case 5:
+                    saveXml.SliderValue = 5;
+                    break;
+                case 6:
+                    saveXml.SliderValue = 6;
+                    break;
+                case 7:
+                    saveXml.SliderValue = 7;
+                    break;
+                case 8:
+                    saveXml.SliderValue = 8;
+                    break;
+                case 9:
+                    saveXml.SliderValue = 9;
+                    break;
+                case 10:
+                    saveXml.SliderValue = 10;
+                    break;
+            }
+
+            saveXml.SaveSettings();
         }
 
 
