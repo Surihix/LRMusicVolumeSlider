@@ -1,8 +1,8 @@
-﻿using LRMusicVolumeSlider.WhiteBinClasses.FilelistClasses;
-using LRMusicVolumeSlider.WhiteBinClasses.SupportClasses;
+﻿using LRMusicVolumeSlider.WhiteBinTools.FilelistClasses;
+using LRMusicVolumeSlider.WhiteBinTools.SupportClasses;
 using System.IO;
 
-namespace LRMusicVolumeSlider.WhiteBinClasses.UnpackClasses
+namespace LRMusicVolumeSlider.WhiteBinTools.UnpackClasses
 {
     public class UnpackTypeC
     {

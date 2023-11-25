@@ -1,7 +1,7 @@
-﻿using LRMusicVolumeSlider.WhiteBinClasses.SupportClasses;
+﻿using LRMusicVolumeSlider.WhiteBinTools.SupportClasses;
 using System.IO;
 
-namespace LRMusicVolumeSlider.WhiteBinClasses.FilelistClasses
+namespace LRMusicVolumeSlider.WhiteBinTools.FilelistClasses
 {
     public partial class FilelistProcesses
     {

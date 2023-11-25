@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using LRMusicVolumeSlider.WhiteBinClasses.SupportClasses;
-using LRMusicVolumeSlider.WhiteBinClasses.FilelistClasses;
+using LRMusicVolumeSlider.WhiteBinTools.SupportClasses;
+using LRMusicVolumeSlider.WhiteBinTools.FilelistClasses;
 
-namespace LRMusicVolumeSlider.WhiteBinClasses.UnpackClasses
+namespace LRMusicVolumeSlider.WhiteBinTools.UnpackClasses
 {
     public partial class UnpackProcess
     {

@@ -1,7 +1,7 @@
 ﻿using Ionic.Zlib;
 using System.IO;
 
-namespace LRMusicVolumeSlider.WhiteBinClasses.SupportClasses
+namespace LRMusicVolumeSlider.WhiteBinTools.SupportClasses
 {
     public static class ZlibFunctions
     {

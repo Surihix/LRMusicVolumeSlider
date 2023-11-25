@@ -1,5 +1,5 @@
-﻿using LRMusicVolumeSlider.WhiteBinClasses.SupportClasses;
-using LRMusicVolumeSlider.WhiteBinClasses.UnpackClasses;
+﻿using LRMusicVolumeSlider.WhiteBinTools.SupportClasses;
+using LRMusicVolumeSlider.WhiteBinTools.UnpackClasses;
 using System.IO;
 using System.Windows.Forms;
 

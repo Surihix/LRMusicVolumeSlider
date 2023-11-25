@@ -1,4 +1,4 @@
-﻿namespace LRMusicVolumeSlider.WhiteBinClasses.UnpackClasses
+﻿namespace LRMusicVolumeSlider.WhiteBinTools.UnpackClasses
 {
     public partial class UnpackProcess
     {

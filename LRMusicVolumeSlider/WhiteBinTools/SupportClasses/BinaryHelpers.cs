@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace LRMusicVolumeSlider.WhiteBinClasses.SupportClasses
+namespace LRMusicVolumeSlider.WhiteBinTools.SupportClasses
 {
     public static class BinaryHelpers
     {

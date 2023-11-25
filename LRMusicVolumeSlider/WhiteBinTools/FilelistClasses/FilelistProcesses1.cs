@@ -1,4 +1,4 @@
-﻿namespace LRMusicVolumeSlider.WhiteBinClasses.FilelistClasses
+﻿namespace LRMusicVolumeSlider.WhiteBinTools.FilelistClasses
 {
     public partial class FilelistProcesses
     {

@@ -1,4 +1,4 @@
-﻿namespace LRMusicVolumeSlider.WhiteBinClasses.SupportClasses
+﻿namespace LRMusicVolumeSlider.WhiteBinTools.SupportClasses
 {
     public class CmnEnums
     {
