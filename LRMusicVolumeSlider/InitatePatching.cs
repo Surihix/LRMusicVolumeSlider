@@ -10,7 +10,7 @@ namespace LRMusicVolumeSlider
         public static void PrePatch(string weissPathVar, string langCodeVar, int sliderValueVar)
         {
             var filelist2file = weissPathVar + "weiss_data\\sys\\filelist2" + langCodeVar + ".win32.bin";
-            UnpackTypeC.UnpackFilelistPaths(CmnEnums.GameCodes.ff132, filelist2file);
+            UnpackTypeChunks.UnpackFilelistChunks(CmnEnums.GameCodes.ff132, filelist2file);
 
             var filelist2PathsFile = weissPathVar + "weiss_data\\sys\\filelist2" + langCodeVar + ".win32.bin.txt";
             var pathValid = false;
@@ -20,10 +20,10 @@ namespace LRMusicVolumeSlider
             {
                 case true:
                     var whiteBin2File = weissPathVar + "weiss_data\\sys\\white_img2" + langCodeVar + ".win32.bin";
-                    UnpackTypeB.UnpackSingle(CmnEnums.GameCodes.ff132, filelist2file, whiteBin2File, "..\\..\\..\\zone\\filelist_z0120" + langCodeVar + ".win32.bin");
+                    UnpackTypeArchive.UnpackSingle(CmnEnums.GameCodes.ff132, filelist2file, whiteBin2File, "..\\..\\..\\zone\\filelist_z0120" + langCodeVar + ".win32.bin");
 
                     var zoneFileListFile = weissPathVar + "zone\\filelist_z0120" + langCodeVar + ".win32.bin";
-                    UnpackTypeC.UnpackFilelistPaths(CmnEnums.GameCodes.ff132, zoneFileListFile);
+                    UnpackTypeChunks.UnpackFilelistChunks(CmnEnums.GameCodes.ff132, zoneFileListFile);
 
                     var zoneFilelistPathsFile = weissPathVar + "zone\\filelist_z0120" + langCodeVar + ".win32.bin.txt";
                     var zoneWhiteBinFile = weissPathVar + "weiss_data\\zone\\white_z0120" + langCodeVar + "_img.win32.bin";

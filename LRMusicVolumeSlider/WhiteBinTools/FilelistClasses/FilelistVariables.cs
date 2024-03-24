@@ -1,6 +1,6 @@
 ﻿namespace LRMusicVolumeSlider.WhiteBinTools.FilelistClasses
 {
-    public partial class FilelistProcesses
+    public class FilelistVariables
     {
         public string MainFilelistFile { get; set; }
         public string MainFilelistDirectory { get; set; }

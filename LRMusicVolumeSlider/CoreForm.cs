@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -183,65 +181,6 @@ namespace LRMusicVolumeSlider
         }
 
 
-        public bool FilesCheck()
-        {
-            var appFilesDict = new Dictionary<int, (string name, string hash, string type)>
-            {
-                { 0, ("DotNetZip.dll", "8e9c0362e9bfb3c49af59e1b4d376d3e85b13aed0fbc3f5c0e1ebc99c07345f3", "dll" ) },
-                { 1, ("ffxiiicrypt.exe", "f9dbc8ac8b367196e449fbb78df396d15aa5f7d8d07e1e295c4435b6c1192ce3", "exe") }
-            };
-
-            var allValid = true;
-            for (int c = 0; c < 2; c++)
-            {
-                if (File.Exists(appFilesDict[c].name))
-                {
-                    byte[] hashArray;
-                    string hash;
-                    using (var checkStream = new FileStream(appFilesDict[c].name, FileMode.Open, FileAccess.Read))
-                    {
-                        using (var fileHash256 = SHA256.Create())
-                        {
-                            hashArray = fileHash256.ComputeHash(checkStream);
-                            hash = BitConverter.ToString(hashArray).Replace("-", "").ToLower();
-                        }
-
-                        if (!hash.Equals(appFilesDict[c].hash))
-                        {
-                            allValid = false;
-
-                            if (JpnUIVOradiobutton.Checked.Equals(true))
-                            {
-                                CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' ファイルが破損しています。\n\nこのボリューム スライダー プログラムが正しくダウンロードされているかどうかを確認してください。", "Error", MessageBoxIcon.Error);
-                            }
-                            else
-                            {
-                                CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' file is corrupt.\nPlease check if this Volume Slider program is properly downloaded.", "Error", MessageBoxIcon.Error);
-                            }
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    allValid = false;
-
-                    if (JpnUIVOradiobutton.Checked.Equals(true))
-                    {
-                        CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' が見つかりません。\n\nこのファイルがこのプログラムの隣に存在することを確認してください。", "Error", MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        CmnMethods.AppMsgBox($"The '{appFilesDict[c].name}' file is missing.\nPlease ensure that this {appFilesDict[c].type} file is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
-                    }
-                    break;
-                }
-            }
-
-            return allValid;
-        }
-
-
         private void SetVolumebutton_Click(object sender, EventArgs e)
         {
             DisableComponents();
@@ -279,16 +218,7 @@ namespace LRMusicVolumeSlider
                         {
                             try
                             {
-                                var allfilesValid = FilesCheck();
-
-                                if (allfilesValid)
-                                {
-                                    InitatePatching.PrePatch(weissPath, langCode, SliderVal);
-                                }
-                                else
-                                {
-                                    return;
-                                }
+                                InitatePatching.PrePatch(weissPath, langCode, SliderVal);
                             }
                             catch (Exception ex)
                             {
