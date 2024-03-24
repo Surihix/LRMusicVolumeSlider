@@ -61,7 +61,7 @@
             this.Versionlabel.Name = "Versionlabel";
             this.Versionlabel.Size = new System.Drawing.Size(29, 15);
             this.Versionlabel.TabIndex = 10;
-            this.Versionlabel.Text = "v2.6";
+            this.Versionlabel.Text = "v2.7";
             // 
             // AppImg_pictureBox
             // 
